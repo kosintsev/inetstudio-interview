@@ -31,4 +31,13 @@ $result = [];
 $column = 'id';
 $value = '2';
 $result = array_filter($array, fn($a) => $a[$column] == $value);
+//print_r($result);
+
+$result = [];
+$pattern = ['name' => 'id'];
+array_walk($uniqValuesArray, function ($v) use (&$result, $pattern) {
+    $keyName = key($pattern);
+    $valueName = $pattern[$keyName];
+    $result[$v[$keyName]] = $v[$valueName];
+});
 print_r($result);
