@@ -40,4 +40,14 @@ array_walk($uniqValuesArray, function ($v) use (&$result, $pattern) {
     $valueName = $pattern[$keyName];
     $result[$v[$keyName]] = $v[$valueName];
 });
-print_r($result);
+//print_r($result);
+
+$sql = <<<SQL
+SELECT g.id, g.name FROM goods g 
+JOIN goods_tags gt
+    ON g.id = gt.goods_id
+JOIN tags t
+    ON t.id = gt.tag_id
+GROUP BY g.id
+HAVING COUNT(gt.goods_id) = (SELECT COUNT(*) FROM tags)
+SQL;
