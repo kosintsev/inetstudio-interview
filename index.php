@@ -25,5 +25,10 @@ uasort($tmp, 'strnatcmp');
 array_walk($tmp, function ($v, $k) use (&$sortedArray, $uniqValuesArray) {
     $sortedArray[$k] = $uniqValuesArray[$k];
 });
+//print_r($sortedArray);
 
-print_r($sortedArray);
+$result = [];
+$column = 'id';
+$value = '2';
+$result = array_filter($array, fn($a) => $a[$column] == $value);
+print_r($result);
