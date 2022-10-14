@@ -51,3 +51,9 @@ JOIN tags t
 GROUP BY g.id
 HAVING COUNT(gt.goods_id) = (SELECT COUNT(*) FROM tags)
 SQL;
+
+$sql = <<<SQL
+SELECT * FROM evaluations 
+WHERE gender = true
+AND value > 5
+SQL;
