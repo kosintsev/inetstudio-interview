@@ -16,4 +16,14 @@ $uniqValuesColumn = array_unique($tmp);
 array_walk($uniqValuesColumn, function ($v, $k) use (&$uniqValuesArray, $array) {
     $uniqValuesArray[$k] = $array[$k];
 });
-print_r($uniqValuesArray);
+//print_r($uniqValuesArray);
+
+$sortedArray = [];
+$column = 'date';
+$tmp = array_map(fn($a) => $a[$column], $uniqValuesArray);
+uasort($tmp, 'strnatcmp');
+array_walk($tmp, function ($v, $k) use (&$sortedArray, $uniqValuesArray) {
+    $sortedArray[$k] = $uniqValuesArray[$k];
+});
+
+print_r($sortedArray);
