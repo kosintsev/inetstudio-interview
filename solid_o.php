@@ -12,15 +12,7 @@ class SomeObjectsHandler {
     public function __construct() { }
 
     public function handleObjects(array $objects): array {
-        $handlers = [];
-        foreach ($objects as $object) {
-            if ($object->getObjectName() == 'object_1')
-                $handlers[] = 'handle_object_1';
-            if ($object->getObjectName() == 'object_2')
-                $handlers[] = 'handle_object_2';
-        }
-
-        return $handlers;
+        return array_map(fn($o) => 'handle_' . $o->getObjectName(), $objects);
     }
 }
 
